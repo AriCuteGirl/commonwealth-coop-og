@@ -10,7 +10,7 @@ usage: manage.py [--root DIR] <command> [args]
   info                 game, version, players online, uptime
   players              everyone online (from the log since the last server start)
   player <name>        one row from "players"
-  settings             server-name, player-limit, tick-rate, password set or not (config.json)
+  settings             server-name, player-limit, tick-rate, password set or not (data/config.json)
   set <key> <value>    change server-name, player-limit, tick-rate or password (restart to apply)
   backup|backups|restore   nothing to back up (players live in memory): ok
   logs [lines]         last lines of data/server.log (default 100)
@@ -83,7 +83,7 @@ def state(root):
 
 def load_cfg(root):
     try:
-        with open(os.path.join(root, "config.json")) as f:
+        with open(os.path.join(root, "data", "config.json")) as f:
             return json.load(f)
     except FileNotFoundError:
         return {}
@@ -130,7 +130,7 @@ def main(argv):
             out({"ok": False, "error": "tick-rate must be 10-120"}, 1)
         cfg = load_cfg(root)
         cfg[key] = value
-        path = os.path.join(root, "config.json")
+        path = os.path.join(root, "data", "config.json")
         with open(path + ".tmp", "w") as f:
             json.dump(cfg, f, indent=4)
         os.replace(path + ".tmp", path)

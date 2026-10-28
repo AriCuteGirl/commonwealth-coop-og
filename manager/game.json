@@ -10,22 +10,42 @@
   "art": "manager/art.svg",
   "accent": "#22c55e",
   "repo": "https://github.com/AriCuteGirl/commonwealth-coop-og",
-  "source": {"github": "AriCuteGirl/commonwealth-coop-og", "ref": "main"},
+  "source": {
+    "github": "AriCuteGirl/commonwealth-coop-og",
+    "ref": "main"
+  },
   "server": {
     "dir": "server",
-    "files": ["start.sh", "manage.py", "bin/linux-arm64/f4coop-server"],
-    "keep_on_update": ["config.json"],
+    "files": [
+      "start.sh",
+      "manage.py",
+      "bin/linux-arm64/f4coop-server"
+    ],
     "install_dir": "~/fallout4-coop",
     "start": "sh start.sh",
     "requires": "python3 >= 3.9, Linux arm64 (Ubuntu 22.04+)",
-    "env": {"F4COOP_PORT": "{port:game}"},
+    "env": {
+      "F4COOP_PORT": "{port:game}"
+    },
     "ports": [
-      {"name": "game", "label": "Co-op server (UDP)", "default": 7779, "protocol": "udp", "required": true}
+      {
+        "name": "game",
+        "label": "Co-op server (UDP)",
+        "default": 7779,
+        "protocol": "udp",
+        "required": true
+      }
     ],
     "data_dir": "data",
     "log_file": "data/server.log",
     "service_name": "fallout4-coop",
-    "systemd_extra": ["RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX", "RestrictNamespaces=yes", "MemoryMax=400M", "UMask=0077", "TimeoutStopSec=10"]
+    "systemd_extra": [
+      "RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX",
+      "RestrictNamespaces=yes",
+      "MemoryMax=400M",
+      "UMask=0077",
+      "TimeoutStopSec=10"
+    ]
   },
   "manage": "server/manage.py",
   "client": {
