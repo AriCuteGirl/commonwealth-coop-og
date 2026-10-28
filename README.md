@@ -45,6 +45,15 @@ redist installs them; otherwise `winetricks vcrun2022`).
 If a virtual gamepad is running (e.g. roblox-caffeine), Fallout 4 picks it up and the camera may turn by
 itself: stop it, or set Settings -> Controls -> Controller off.
 
+## Server on a VPS (Server Manager)
+
+`manager/game.json` lets Server Manager import this repo (Games -> Import a game -> GitHub ->
+`AriCuteGirl/commonwealth-coop-og`) and run the co-op server on a Linux arm64 VPS (e.g. Oracle free tier)
+as the systemd service `fallout4-coop`, UDP 7779. The server is the FathersFallout server built for Linux
+(`server/bin/linux-arm64/f4coop-server`, source and the one fix in `server/source/`).
+Then everyone, host included, connects to the VPS: the host types its address in **Server** under
+Host (others join me), friends type it under Join a friend.
+
 ## Play
 
 Co-op needs a save made **after leaving Vault 111**.

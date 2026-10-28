@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "id": "fallout4-coop-og",
+  "name": "Fallout 4 Co-op (OG)",
+  "publisher": "Commonwealth Co-op",
+  "platform": "PC",
+  "category": "coop",
+  "description": "Online co-op for Fallout 4 1.10.163 (GOG / old-gen) with the Commonwealth Co-op mod: the co-op server runs here, so nobody has to forward ports.",
+  "icon": "manager/icon.svg",
+  "art": "manager/art.svg",
+  "accent": "#22c55e",
+  "repo": "https://github.com/AriCuteGirl/commonwealth-coop-og",
+  "source": {"github": "AriCuteGirl/commonwealth-coop-og", "ref": "main"},
+  "server": {
+    "dir": "server",
+    "files": ["start.sh", "manage.py", "bin/linux-arm64/f4coop-server"],
+    "keep_on_update": ["config.json"],
+    "install_dir": "~/fallout4-coop",
+    "start": "sh start.sh",
+    "requires": "python3 >= 3.9, Linux arm64 (Ubuntu 22.04+)",
+    "env": {"F4COOP_PORT": "{port:game}"},
+    "ports": [
+      {"name": "game", "label": "Co-op server (UDP)", "default": 7779, "protocol": "udp", "required": true}
+    ],
+    "data_dir": "data",
+    "log_file": "data/server.log",
+    "service_name": "fallout4-coop",
+    "systemd_extra": ["RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX", "RestrictNamespaces=yes", "MemoryMax=400M", "UMask=0077", "TimeoutStopSec=10"]
+  },
+  "manage": "server/manage.py",
+  "client": {
+    "title": "How players join",
+    "how_to": [
+      "Everyone installs Commonwealth Co-op (see the README in the GitHub release) on Fallout 4 1.10.163 with F4SE 0.6.23.",
+      "Load a save made after leaving Vault 111, press F1 -> Commonwealth Co-op -> Menu.",
+      "Host: Host (others join me), Server:",
+      "$ {public_host}",
+      "port {port}, then Host a game.",
+      "Friends: Join a friend, Host's IP:",
+      "$ {public_host}",
+      "port {port}, then Join."
+    ]
+  }
+}

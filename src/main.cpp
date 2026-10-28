@@ -3281,6 +3281,14 @@ namespace F4MP
             ImGuiMCP::TextDisabled("joining catches your quests up to the host's progress.");
         } else {
             FindServerExe();
+            // Server on this PC (empty) or on a VPS everyone joins (e.g. one run by Server Manager).
+            static char s_hostServer[64] = "";
+            static bool s_hostInit = false;
+            if (!s_hostInit) {
+                s_hostInit = true;
+                if (!IsLocalAddress(g_serverAddr) && !IsSteamAddress(g_serverAddr)) strncpy_s(s_hostServer, g_serverAddr, _TRUNCATE);
+            }
+            ImGuiMCP::InputTextWithHint("Server", "empty = server on this PC; or the VPS address", s_hostServer, sizeof(s_hostServer));
             ImGuiMCP::InputInt("Port", &g_serverPort);
             ImGuiMCP::InputTextWithHint("Password", "empty = anyone who finds your game can join", g_password, sizeof(g_password), ImGuiMCP::ImGuiInputTextFlags_Password);
             ImGuiMCP::TextDisabled("Friends type the same password when they join. Don't use your Steam or email password.");
@@ -3288,7 +3296,7 @@ namespace F4MP
             if (ImGuiMCP::Button("Host a game")) {
                 g_isHost = true;
                 g_serverRestarted = false;
-                std::snprintf(g_serverAddr, sizeof(g_serverAddr), "127.0.0.1");
+                std::snprintf(g_serverAddr, sizeof(g_serverAddr), "%s", s_hostServer[0] ? s_hostServer : "127.0.0.1");
                 SaveConnectIni(s_auto);
                 RefreshInIntro();
                 ConnectNow(2);

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a1410"/><stop offset="0.7" stop-color="#1d3324"/><stop offset="1" stop-color="#3b4a2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="220" fill="url(#sky)"/>
+  <circle cx="500" cy="70" r="34" fill="#d9f99d" opacity="0.18"/>
+  <!-- ruined skyline -->
+  <path fill="#122017" d="M0 170V128h30v-20h18v28h26v-46h14l6-14 6 14h12v58h22v-34h30v18h16V96l10-8 10 8v40h26v-22h28v36h20v-60h12v-12h16v12h12v60h24v-28h34v20h18v-44l14-10 14 10v52h22v-30h26v38h30v-16h20v24h22v-36h16v34H640v48H0z"/>
+  <path fill="#0d1810" d="M0 190h640v30H0z"/>
+  <!-- two wanderers -->
+  <g fill="#4ade80">
+    <circle cx="292" cy="146" r="7"/>
+    <path d="M284 155h16l3 26h-6l-3 18h-4l-1-16h-1l-1 16h-4l-3-18h-6z"/>
+  </g>
+  <g fill="#86efac">
+    <circle cx="340" cy="148" r="6.5"/>
+    <path d="M333 156h14l3 25h-6l-3 18h-4l-1-15h-1l-1 15h-4l-3-18h-6z"/>
+  </g>
+  <text x="320" y="60" font-family="sans-serif" font-size="30" font-weight="800" fill="#bbf7d0" text-anchor="middle" letter-spacing="3">COMMONWEALTH CO-OP</text>
+  <text x="320" y="86" font-family="sans-serif" font-size="13" fill="#86efac" text-anchor="middle" opacity="0.8">Fallout 4 1.10.163 · unofficial FathersFallout port</text>
+</svg>
