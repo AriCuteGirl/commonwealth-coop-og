@@ -19,13 +19,15 @@
     "files": [
       "start.sh",
       "manage.py",
+      "status.py",
       "bin/linux-arm64/f4coop-server"
     ],
     "install_dir": "~/fallout4-coop",
     "start": "sh start.sh",
     "requires": "python3 >= 3.9, Linux arm64 (Ubuntu 22.04+)",
     "env": {
-      "F4COOP_PORT": "{port:game}"
+      "F4COOP_PORT": "{port:game}",
+      "F4COOP_STATUS_PORT": "{port:status}"
     },
     "ports": [
       {
@@ -33,6 +35,13 @@
         "label": "Co-op server (UDP)",
         "default": 7779,
         "protocol": "udp",
+        "required": true
+      },
+      {
+        "name": "status",
+        "label": "Status page (TCP, health check)",
+        "default": 7779,
+        "protocol": "tcp",
         "required": true
       }
     ],
@@ -45,7 +54,13 @@
       "MemoryMax=400M",
       "UMask=0077",
       "TimeoutStopSec=10"
-    ]
+    ],
+    "health": {
+      "type": "http",
+      "port": "status",
+      "path": "/health",
+      "expect": 200
+    }
   },
   "manage": "server/manage.py",
   "client": {

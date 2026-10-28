@@ -49,6 +49,7 @@ int UMain() {
     }
     auto logger = std::make_shared<spdlog::logger>("server", sinks.begin(), sinks.end());
     logger->set_level(spdlog::level::info);
+    logger->flush_on(spdlog::level::info);   // Commonwealth Co-op: write each line now (status tools read the file)
     spdlog::set_default_logger(logger);
 
     GameServer::GetInstance().SetName(Config::getInstance().Name);

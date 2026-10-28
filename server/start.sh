@@ -27,5 +27,7 @@ with open(tmp, "w") as f:
     json.dump(cfg, f, indent=4)
 os.replace(tmp, path)
 EOF
+# Status page for the health check (TCP); stops with the service (same cgroup).
+python3 -B ../status.py &
 # The upload may not keep the execute bit and the folder is read-only: start it through the loader.
 if [ -x "$BIN" ]; then exec "$BIN"; else exec "$LD" "$BIN"; fi
