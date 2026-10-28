@@ -1,0 +1,14 @@
+diff --git a/src/F4SE/API.cpp b/src/F4SE/API.cpp
+index dd4c096..a99b7a7 100644
+--- a/src/F4SE/API.cpp
++++ b/src/F4SE/API.cpp
+@@ -135,6 +135,9 @@ namespace F4SE
+ 							trampoline.set_trampoline(mem, info.trampolineSize);
+ 						else
+ 							trampoline.create(info.trampolineSize);
++					} else {
++						// OG F4SE 0.6.x has no trampoline interface: allocate our own near the game
++						trampoline.create(info.trampolineSize);
+ 					}
+ 				});
+ 			}
