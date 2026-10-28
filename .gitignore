@@ -2,3 +2,4 @@ build/
 extern/
 run-server/
 dist/
+__pycache__/
