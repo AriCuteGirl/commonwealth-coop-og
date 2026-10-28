@@ -500,6 +500,7 @@ public:
     bool LastCloseWasAttempt() const { return m_lastCloseWasAttempt; }
 
     void SetPlayerName(const std::string& name) { m_playerName = name; }
+    std::string GetPlayerName() const { return m_playerName; }
     void SetPassword(const std::string& pw) { m_password = pw; }   // sent in the handshake
     bool IsSteam() const { return m_steam; }
     ISteamNetworkingSockets* Sockets() const { return m_sockets; }

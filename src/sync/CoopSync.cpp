@@ -2379,6 +2379,8 @@ namespace F4MP::Coop
         if (Clock::now() - s_lastLook >= std::chrono::seconds(10)) {
             s_lastLook = Clock::now();
             auto blob = Appearance::LookToSend();   // saved "co-op look" if any, else this character
+            // Others see the name typed in the co-op menu (a quick-start game has no character name).
+            Appearance::StampName(blob, net.GetPlayerName());
             if (!blob.empty()) {
                 net.SendPacket(MessageType::CoopAppearance, blob.data(), static_cast<uint32_t>(blob.size()));
                 g_stats.sent++;

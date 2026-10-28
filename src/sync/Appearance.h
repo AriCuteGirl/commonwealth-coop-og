@@ -49,6 +49,7 @@ namespace F4MP::Appearance
 
     bool SaveMyLook();                         // save the loaded character and select it
     std::vector<uint8_t> LookToSend();         // selected character if any, else the loaded one
+    void StampName(std::vector<uint8_t>& a_blob, const std::string& a_name);   // name others see over this look
     std::string MyLookName();
     std::string NameOf(uint32_t playerId);     // remote player's character name, "" if unknown                  // selected character's name, or "" if none
 

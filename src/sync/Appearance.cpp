@@ -494,6 +494,14 @@ namespace F4MP::Appearance
         return CaptureLocal();
     }
 
+    void StampName(std::vector<uint8_t>& a_blob, const std::string& a_name)
+    {
+        if (a_name.empty() || a_blob.size() < sizeof(Header)) return;
+        auto* h = reinterpret_cast<Header*>(a_blob.data());
+        std::memset(h->name, 0, sizeof(h->name));
+        std::memcpy(h->name, a_name.data(), (std::min)(a_name.size(), sizeof(h->name) - 1));
+    }
+
     std::string MyLookName()
     {
         const auto dir = CharactersDir();
